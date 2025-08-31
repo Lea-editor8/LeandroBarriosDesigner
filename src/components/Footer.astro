@@ -1,0 +1,63 @@
+---
+import Corazon from '@iconos/corazon.astro'
+import Redes from '@iconos/Redes.astro'
+---
+<footer class="bg-azul-oscuro text-white py-8 px-6 md:px-12 text-center left-0 w-full z-50">
+    <div class="max-w-6xl mx-auto">
+        <p class="text-lg font-bold mb-4">
+            <a href="#hero" class="text-inherit">© 2025 Leandro Barrios Designer</a>
+        </p>
+        <div class="centrado mt-4 gap-2">
+            <div class="corazon"></div>
+        </div>
+    </div>
+</footer>
+
+<style>
+        .corazon {
+            width: 24px;
+            height: 24px;
+            background-color: rgb(255, 255, 255);
+            position: relative;
+            transform: rotate(-45deg);
+            animation: latido 1s infinite;
+        }
+
+        .corazon::before,
+        .corazon::after {
+            content: "";
+            width: 24px;
+            height: 24px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .corazon::before {
+            top: -12px;
+            left: 0;
+        }
+
+        .corazon::after {
+            top: 0;
+            left: 12px;
+        }
+
+        @keyframes latido {
+            0%, 100% {
+                transform: rotate(-45deg) scale(1);
+            }
+            50% {
+                transform: rotate(-45deg) scale(1.2);
+            }
+        }
+
+        .centrado {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .degradado {
+            background: var(--gradient-1);
+        }
+</style>

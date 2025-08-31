@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-violeta: oklch(0.6184 0.2654 306.37);
+  --color-azul: oklch(0.5267 0.2481 280.03);
+  --color-celeste: oklch(0.8176 0.1392 202.95);
+  --color-azul-oscuro: oklch(0.159 0.0769 272);
+
+  /* Degradado personalizado */
+    --gradient-1: linear-gradient(
+    144deg,
+    var(--color-violeta),
+    var(--color-azul),
+    var(--color-celeste)
+);
+}

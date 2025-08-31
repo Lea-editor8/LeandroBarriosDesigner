@@ -1,0 +1,21 @@
+---
+---
+<span id="typed-text"></span>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+      const element = document.getElementById("typed-text");
+      const text = "Diseñador Gráfico";
+      let i = 0;
+
+      function typeWriter() {
+          if (i < text.length) {
+              element.textContent += text.charAt(i);
+              i++;
+              setTimeout(typeWriter, 100);
+          }
+      }
+
+      typeWriter();
+  });
+</script>
