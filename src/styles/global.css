@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@custom-variant hover (&:hover)
 
 @theme {
   --color-violeta: oklch(0.6184 0.2654 306.37);
