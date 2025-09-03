@@ -1,16 +1,89 @@
 @import "tailwindcss";
 
+
 @theme {
+
   --color-violeta: oklch(0.6184 0.2654 306.37);
   --color-azul: oklch(0.5267 0.2481 280.03);
   --color-celeste: oklch(0.8176 0.1392 202.95);
   --color-azul-oscuro: oklch(0.159 0.0769 272);
+  --color-verde-hoja: oklch(0.7 0.185 129.18);
 
   /* Degradado personalizado */
-    --gradient-1: linear-gradient(
+  --gradient-1: linear-gradient(
     144deg,
     var(--color-violeta),
     var(--color-azul),
     var(--color-celeste)
-);
+  );
 }
+
+/* Lato Light */
+@font-face {
+    font-family: "Lato";
+    src: url("/font/Lato-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Lato Regular */
+@font-face {
+    font-family: "Lato";
+    src: url("/font/Lato-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Lato Bold */
+  @font-face {
+      font-family: "Lato";
+      src: url("/font/Lato-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+  }
+
+/* Lato Black */
+  @font-face {
+      font-family: "Lato";
+      src: url("/font/Lato-Black.ttf") format("truetype");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+  }
+/* Italic */
+  @font-face {
+      font-family: "Lato";
+      src: url("/font/Lato-Italic.ttf") format("truetype");
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+  }
+
+/* CSS */
+	.lato-light {
+	font-family: "Lato", sans-serif;
+	font-weight: 300;
+	}
+
+	.lato-regular {
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	}
+
+	.lato-bold {
+	font-family: "Lato", sans-serif;
+	font-weight: 700;
+	}
+
+  .lato-black {
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  }
+  .lato-regular-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
