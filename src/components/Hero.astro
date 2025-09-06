@@ -25,7 +25,7 @@ import Redes from '@iconos/Redes.astro';
                 <div class="flex flex-col items-center md:flex-row md:justify-start md:space-x-5 space-y-4 md:space-y-0 mb-10">
                     <!-- Botón "Descargar CV" con el nuevo estilo -->
                     <a href="/docs/CV_Leandro_Barrios.pdf" download><button id="download-cv-btn" class="boton-cv" role="button"><span class="text lato-regular">Descargar CV</span></button></a>
-                    <a href="#modal" id="contact-info-btn" class="boton lato-regular">Contacto</a>
+                    <a href="#modal" id="contact-info-btn" class="boton lato-regular">Disponible</a>
                 </div>
             <div class="mb-3">
             <ul class="flex justify-center md:justify-start space-x-6">
@@ -36,25 +36,18 @@ import Redes from '@iconos/Redes.astro';
         </div>
 
 <!-- Modal -->
-        <div id="modal" class="fixed inset-0 bg-black/75 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modal" class="z-50 fixed inset-0 bg-black/75 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
         <div class="bg-white p-12 max-w-md mx-auto relative scale-95 transition-transform duration-300 shadow-lg">
             <!-- Botón de cerrar -->
             <a href="#" class="absolute top-1 right-4 text-gray-500 hover:text-gray-700 text-xl">&times;</a>
             <div class="mb-4 text-center justify-center">
-            <h2 class="text-xl font-bold mb-4 text-gray-800">Contacto</h2>
-            <div class="flex items-center space-x-2">
-                <img src="/imagenes/mail.svg" alt="Email" class="w-7 h-7">
-                <p class="mb-1 text-gray-600 font-semibold">leandrobarriospintos90@gmail.com
-            </p></div>
-            <div class="flex items-center justify-center space-x-2">
-                <img src="/imagenes/whatsapp.svg" alt="Email" class="w-7 h-7 mb-2">
-                <p class="mb-2 text-gray-600 font-semibold">
-                <a href="https://wa.link/zesrbl" target="_blank" class="hover:text-green-500 transition duration-300">
-                +54 9 11 6023-0521
-                </a>
-            </p></div>
-        </div>
-            <a href="#" class="bg-azul text-white px-4 py-2 hover:contrast-200 transition-colors duration-300 block text-center">
+                <h2 class="text-xl lato-bold mb-4 text-gray-800">Disponible para trabajar</h2>
+                <div class="flex items-center space-x-2">
+                    <p class="mb-1 text-gray-600 lato-regular text-lg text-balance">Explorá cada proyecto y descubrí cómo puedo ayudarte a darle forma a tus ideas.
+                    </p>
+                </div>
+            </div>
+            <a href="#" class="bg-azul text-white px-4 py-2 hover:contrast-200 transition-colors duration-300 block text-center lato-regular">
             ¡No dudes en contactarme!
             </a>
         </div>
