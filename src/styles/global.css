@@ -8,6 +8,8 @@
   --color-celeste: oklch(0.8176 0.1392 202.95);
   --color-azul-oscuro: oklch(0.159 0.0769 272);
   --color-azul-claro: oklch(0.862 0.0332 293.34);
+  --color-gris-claro: oklch(0.99 0 244.59);
+
 
   /* Degradado personalizado */
   --gradient-1: linear-gradient(
