@@ -89,3 +89,17 @@
     font-weight: 400;
     font-style: italic;
   }
+
+    /*SCROLL*/
+    /* Estado inicial: oculto */
+    .animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 2s ease-out;
+    }
+
+    /* Cuando entra en pantalla */
+    .animate.show {
+    opacity: 1;
+    transform: translateY(0);
+    }
