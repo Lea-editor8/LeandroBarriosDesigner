@@ -95,7 +95,7 @@
     .animate {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 2s ease-out;
+    transition: all 1s ease-out;
     }
 
     /* Cuando entra en pantalla */
