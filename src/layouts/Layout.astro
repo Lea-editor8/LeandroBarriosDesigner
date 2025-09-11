@@ -4,6 +4,7 @@ import Footer from '@components/Footer.astro'
 import Float from '@funciones/Disponible.astro'
 
 import '@styles/global.css'
+import GoogleTagManager from '@components/GoogleTagManager.astro'
 ---
 <!doctype html>
 <html lang="es-AR">
@@ -30,6 +31,7 @@ import '@styles/global.css'
 		<meta name="twitter:title" content="Leandro Barrios – Diseñador Gráfico">
 		<meta name="twitter:description" content="Portfolio de Leandro Barrios, diseñador gráfico con experiencia en branding, diseño editorial y comunicación institucional.">
 		<meta name="twitter:image" content="/imagenes/image-web-site.jpg">
+		<GoogleTagManager />
 	</head>
 	<body class="font-lato">
 		<Header />
@@ -38,6 +40,7 @@ import '@styles/global.css'
 				</main>
 		<Float />
 		<Footer />
+		<GoogleTagManager />
 	</body>
 </html>
 
