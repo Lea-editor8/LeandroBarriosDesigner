@@ -1,5 +1,27 @@
+---
+import { Image } from "astro:assets";
+import linkedin from "../assets/imagenes/linkedin.svg";
+import github from "../assets/imagenes/github.svg";
+import instagram from "../assets/imagenes/instagram.svg";
+---
+
 <div class="flex gap-x-6">
-    <a href="https://www.linkedin.com/in/leandro-barrios-1990-link/" target="_blank" class="transition-all duration-300 scale-100 hover:scale-120 active:scale-120 focus:scale-120"><img src="/imagenes/linkedin.svg" alt="LinkedIn" class="w-10 h-10"/></a>
-    <a href="https://github.com/Lea-editor8" target="_blank" class="transition-all duration-300 scale-100 hover:scale-120 active:scale-120 focus:scale-120"><img src="/imagenes/github.svg" alt="Facebook" class="w-10 h-10"/></a>
-    <a href="https://www.instagram.com/leandrobarriospintos/" target="_blank" class="transition-all duration-300 scale-100 hover:scale-120 active:scale-120 focus:scale-120"><img src="/imagenes//instagram.svg" alt="Instagram" class="w-10 h-10"/></a>
+    <a
+        href="https://www.linkedin.com/in/leandro-barrios-1990-link/"
+        target="_blank"
+        class="transition-all duration-300 scale-100 hover:scale-120 active:scale-120 focus:scale-120"
+        ><Image src={linkedin} alt="LinkedIn" class="w-10 h-10" /></a
+    >
+    <a
+        href="https://github.com/Lea-editor8"
+        target="_blank"
+        class="transition-all duration-300 scale-100 hover:scale-120 active:scale-120 focus:scale-120"
+        ><Image src={github} alt="GitHub" class="w-10 h-10" /></a
+    >
+    <a
+        href="https://www.instagram.com/leandrobarriospintos/"
+        target="_blank"
+        class="transition-all duration-300 scale-100 hover:scale-120 active:scale-120 focus:scale-120"
+        ><Image src={instagram} alt="Instagram" class="w-10 h-10" /></a
+    >
 </div>

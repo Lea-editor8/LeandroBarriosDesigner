@@ -2,6 +2,9 @@
 import TextTyped from "@funciones/TextTyped.astro";
 import Redes from "@iconos/Redes.astro";
 import Button from "@components/ui/Button.astro";
+import { Image } from "astro:assets";
+import perfil from "../assets/imagenes/perfil-lean.jpg";
+import perfilColor from "../assets/imagenes/perfil-lean-color.jpg";
 ---
 
 <section
@@ -17,14 +20,14 @@ import Button from "@components/ui/Button.astro";
             class="relative w-[21rem] h-[21rem] rounded-full overflow-hidden mx-auto mb-8 md:mb-0 shadow-lg group"
         >
             <!-- Imagen principal (visible por defecto) -->
-            <img
-                src="/imagenes/perfil-lean.jpg"
+            <Image
+                src={perfil}
                 alt="Foto de Perfil de Leandro Barrios"
                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 group-hover:opacity-0 group-active:opacity-0"
             />
             <!-- Segunda imagen (visible al pasar el cursor) -->
-            <img
-                src="/imagenes/perfil-lean-color.jpg"
+            <Image
+                src={perfilColor}
                 alt="Foto de Perfil de Leandro Barrios Color"
                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100 group-active:opacity-100"
             />
