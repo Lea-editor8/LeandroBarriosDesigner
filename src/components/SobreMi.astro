@@ -1,41 +1,47 @@
 ---
+import Card from "./ui/Card.astro";
 ---
-    <section id="about" class="py-16 px-6 md:px-12">
-        <h2 class="text-4xl lato-black text-center mb-12 mt-4">Sobre Mí</h2>
-        <div class="flex flex-col items-center max-w-6xl mx-auto space-y-8 md:space-y-0 animate">
-            <div class="w-full">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div class=" p-6 text-center custom-box-shadow fondo-me">
-                        <img src="/imagenes/exp.svg" alt="Experiencia" class="w-16 h-16 mx-auto mb-4">
-                        <h3 class="text-xl lato-bold">Experiencia</h3>
-                        <p class="text-lg lato-regular">10+ años</p>
-                        <p class="text-lg lato-regular">Diseño Gráfico</p>
-                    </div>
-                    <div class=" p-6 text-center custom-box-shadow fondo-me">
-                        <img src="/imagenes/estudios.svg" alt="Experiencia" class="w-16 h-16 mx-auto mb-4">
-                        <h3 class="text-xl lato-bold">Formación</h3>
-                        <p class="text-lg lato-regular">Diseño Gráfico</p>
-                        <p class="text-lg lato-regular">Escuela de Arte Luján</p>
-                    </div>
-                </div>
-                <p class="text-xl text-left lato-regular tracking-[0.01em] leading-loose">
-                    Diseñador gráfico con más de 10 años de experiencia en branding, identidad institucional, diseño editorial, comunicación visual para redes sociales y diseño web. He trabajado de forma independiente y en colaboración con instituciones, emprendedores y equipos creativos, desarrollando piezas visuales que combinan estética, estrategia y funcionalidad. Me especializo en construir marcas sólidas y coherentes, con una mirada integral y adaptable a distintos medios y plataformas.
-                </p>
-            </div>
-        </div>
-    </section>
 
-<style>
-    .custom-box-shadow {
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    }
-    body.dark-mode .custom-box-shadow { 
-        box-shadow: rgba(11, 5, 70, 0.384) 0px 7px 29px 0px; 
-    }
-    .fondo-me {
-        background: rgb(255, 255, 255);
-    }
-    body.dark-mode .fondo-me { 
-        background: rgb(5, 6, 45);
-    }
-</style>
+<section id="about" class="py-16 px-6 md:px-12">
+    <h2 class="text-4xl lato-black text-center mb-12 mt-4">Sobre Mí</h2>
+    <div
+        class="flex flex-col items-center max-w-6xl mx-auto space-y-8 md:space-y-0 animate"
+    >
+        <div class="w-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <Card class="text-center h-full flex flex-col justify-center">
+                    <img
+                        src="/imagenes/exp.svg"
+                        alt="Experiencia"
+                        class="w-16 h-16 mx-auto mb-4"
+                    />
+                    <h3 class="text-xl lato-bold">Experiencia</h3>
+                    <p class="text-lg lato-regular">10+ años</p>
+                    <p class="text-lg lato-regular">Diseño Gráfico</p>
+                </Card>
+                <Card class="text-center h-full flex flex-col justify-center">
+                    <img
+                        src="/imagenes/estudios.svg"
+                        alt="Formación"
+                        class="w-16 h-16 mx-auto mb-4"
+                    />
+                    <h3 class="text-xl lato-bold">Formación</h3>
+                    <p class="text-lg lato-regular">Diseño Gráfico</p>
+                    <p class="text-lg lato-regular">Escuela de Arte Luján</p>
+                </Card>
+            </div>
+            <p
+                class="text-xl text-left lato-regular tracking-[0.01em] leading-loose"
+            >
+                Diseñador gráfico con más de 10 años de experiencia en branding,
+                identidad institucional, diseño editorial, comunicación visual
+                para redes sociales y diseño web. He trabajado de forma
+                independiente y en colaboración con instituciones, emprendedores
+                y equipos creativos, desarrollando piezas visuales que combinan
+                estética, estrategia y funcionalidad. Me especializo en
+                construir marcas sólidas y coherentes, con una mirada integral y
+                adaptable a distintos medios y plataformas.
+            </p>
+        </div>
+    </div>
+</section>
