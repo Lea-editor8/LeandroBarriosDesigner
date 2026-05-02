@@ -1,10 +1,22 @@
+import type { ImageMetadata } from "astro";
+
 export interface Project {
   id: string;
   imgPortada: string;
   imgFull: string;
   titulo: string;
   descripcion: string;
-  linkExterno?: string; // Para proyectos que tienen un link (ej. proyecto 41)
+  linkExterno?: string;
+}
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/imagenes/*.{jpeg,jpg,png,gif}",
+  { eager: true },
+);
+
+export function resolveProjectImage(path: string): ImageMetadata | undefined {
+  const key = `/src/assets${path}`;
+  return imageModules[key]?.default;
 }
 
 export const proyectos: Project[] = [

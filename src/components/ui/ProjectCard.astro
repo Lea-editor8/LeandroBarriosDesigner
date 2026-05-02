@@ -1,19 +1,20 @@
 ---
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface Props {
-    imgPortada: string;
-    imgFull: string;
+    portada: ImageMetadata;
+    full: ImageMetadata;
     titulo: string;
     descripcion: string;
     linkExterno?: string;
-    large?: boolean; // Por si queremos hacer cards más grandes en el futuro
+    large?: boolean;
     delay?: number;
 }
 
 const {
-    imgPortada,
-    imgFull,
+    portada,
+    full,
     titulo,
     descripcion,
     linkExterno,
@@ -21,24 +22,8 @@ const {
     delay = 0,
 } = Astro.props;
 
-// Dynamically import images
-const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/imagenes/*.{jpeg,jpg,png,gif}",
-    { eager: true },
-);
-
-const portadaSrc = `/src/assets${imgPortada}`;
-const fullSrc = `/src/assets${imgFull}`;
-
-const imagePortada = images[portadaSrc]?.default;
-const imageFull = images[fullSrc]?.default;
-
-if (!imagePortada) {
-    console.error(`Imagen de portada no encontrada: ${portadaSrc}`);
-}
-if (!imageFull) {
-    console.error(`Imagen completa no encontrada: ${fullSrc}`);
-}
+const optimizedFull = await getImage({ src: full, format: "webp" });
+const fullSrc = optimizedFull.src;
 ---
 
 {
@@ -48,19 +33,18 @@ if (!imageFull) {
             target="_blank"
             class={`relative group overflow-hidden cursor-pointer project-item animate ${large ? "col-span-2 row-span-2" : ""}`}
             style={`transition-delay: ${delay}ms`}
-            data-full-image={imageFull?.src}
+            data-full-image={fullSrc}
             data-project-title={titulo}
             data-project-description={descripcion}
         >
-            {imagePortada && (
-                <Image
-                    src={imagePortada}
-                    alt={titulo}
-                    width={large ? 800 : 400}
-                    height={large ? 800 : 400}
-                    class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 group-focus:scale-110"
-                />
-            )}
+            <Image
+                src={portada}
+                alt={titulo}
+                width={large ? 800 : 400}
+                height={large ? 800 : 400}
+                format="webp"
+                class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 group-focus:scale-110"
+            />
             <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 p-6 text-center backdrop-blur-sm">
                 <h3 class="text-xl font-bold text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     {titulo}
@@ -73,19 +57,18 @@ if (!imageFull) {
     ) : (
         <div
             class={`relative group overflow-hidden cursor-pointer project-item animate ${large ? "col-span-2 row-span-2" : ""}`}
-            data-full-image={imageFull?.src}
+            data-full-image={fullSrc}
             data-project-title={titulo}
             data-project-description={descripcion}
         >
-            {imagePortada && (
-                <Image
-                    src={imagePortada}
-                    alt={titulo}
-                    width={large ? 800 : 400}
-                    height={large ? 800 : 400}
-                    class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 group-focus:scale-110"
-                />
-            )}
+            <Image
+                src={portada}
+                alt={titulo}
+                width={large ? 800 : 400}
+                height={large ? 800 : 400}
+                format="webp"
+                class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 group-focus:scale-110"
+            />
 
             <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 p-6 text-center backdrop-blur-sm">
                 <h3 class="text-xl font-bold text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -98,7 +81,3 @@ if (!imageFull) {
         </div>
     )
 }
-
-<style>
-    /* Podríamos mover estilos específicos aquí si quisiéramos encapsular más */
-</style>

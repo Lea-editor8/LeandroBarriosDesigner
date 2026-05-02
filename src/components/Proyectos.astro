@@ -1,5 +1,5 @@
 ---
-import { proyectos } from "@data/proyectos";
+import { proyectos, resolveProjectImage } from "@data/proyectos";
 import ProjectCard from "@components/ui/ProjectCard.astro";
 import Modal from "@components/ui/Modal.astro";
 ---
@@ -13,7 +13,11 @@ import Modal from "@components/ui/Modal.astro";
     >
         {
             proyectos.map((proyecto, index) => {
-                // Patrón Bento: Destacamos el primer proyecto y luego uno cada 8 para romper la monotonía
+                const portada = resolveProjectImage(proyecto.imgPortada);
+                const full = resolveProjectImage(proyecto.imgFull);
+
+                if (!portada) return null;
+
                 const isLarge =
                     index === 0 ||
                     index === 8 ||
@@ -23,8 +27,8 @@ import Modal from "@components/ui/Modal.astro";
                     index === 40;
                 return (
                     <ProjectCard
-                        imgPortada={proyecto.imgPortada}
-                        imgFull={proyecto.imgFull}
+                        portada={portada}
+                        full={full ?? portada}
                         titulo={proyecto.titulo}
                         descripcion={proyecto.descripcion}
                         linkExterno={proyecto.linkExterno}
