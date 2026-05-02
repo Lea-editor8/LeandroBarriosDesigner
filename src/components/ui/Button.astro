@@ -18,80 +18,39 @@ const {
 
 <a
     href={href}
-    class:list={[variant === "primary" ? "boton-cv" : "boton", className]}
+    class:list={[
+        variant === "primary"
+            ? "inline-flex items-center justify-center cursor-pointer select-none no-underline touch-manipulation rounded-none border-0 box-border max-w-full whitespace-nowrap min-w-[140px] md:min-w-[196px] text-[20px] md:text-[24px] leading-[1em] px-6 py-4 boton-cv transition-all duration-300 hover:scale-105"
+            : "boton",
+        className
+    ]}
     download={download ? "" : undefined}
     id={id}
 >
-    {
-        variant === "primary" ? (
-            <span class="lato-regular">
-                <slot />
-            </span>
-        ) : (
-            <span class="lato-regular">
-                <slot />
-            </span>
-        )
-    }
+    <span class="lato-regular">
+        <slot />
+    </span>
 </a>
 
 <style>
-    /* Estilos extraídos de Hero.astro */
     .boton-cv {
-        align-items: center;
-        background-image: linear-gradient(
-            144deg,
-            #af40ff,
-            #5b42f3 50%,
-            #00ddeb
-        );
-        border: 0;
-        border-radius: 0px;
-        box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-        box-sizing: border-box;
-        color: #ffffff;
-        display: flex;
-        font-size: 20px;
-        justify-content: center;
-        line-height: 1em;
-        max-width: 100%;
-        min-width: 140px;
-        padding: 3px;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        white-space: nowrap;
-        cursor: pointer;
-        text-decoration: none;
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-dark);
+        box-shadow: 0 4px 14px rgba(16, 24, 32, 0.15);
     }
 
-    .boton-cv:active,
     .boton-cv:hover {
-        outline: 0;
-        background-color: #fefffa;
+        box-shadow: 0 10px 30px -5px rgba(16, 24, 32, 0.35);
     }
 
-    .boton-cv span {
-        background-color: #fefffa;
-        border-radius: 0px;
-        padding: 16px 24px;
-        width: 100%;
-        height: 100%;
-        transition: 300ms;
-        display: block;
-        color: #101820;
+    :global(body.dark-mode) .boton-cv {
+        background-color: var(--color-bg-light);
+        color: var(--color-text-light);
+        box-shadow: 0 4px 14px rgba(254, 255, 250, 0.1);
     }
 
-    :global(body.dark-mode) .boton-cv span {
-        background-color: #101820;
-        color: #fefffa;
-    }
-
-    @media (min-width: 768px) {
-        .boton-cv {
-            font-size: 24px;
-            min-width: 196px;
-        }
+    :global(body.dark-mode) .boton-cv:hover {
+        box-shadow: 0 10px 30px -5px rgba(254, 255, 250, 0.2);
     }
 
     .boton {
