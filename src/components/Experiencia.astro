@@ -4,115 +4,224 @@ import { Image } from "astro:assets";
 import tilde from "../assets/imagenes/tilde.svg";
 ---
 
-<!-- Sección "Experience" -->
-<section id="experience" class="py-16 px-6 md:px-12">
-    <h2 class="text-4xl lato-black text-center mb-12 mt-4">
-        Experiencia Profesional
-    </h2>
-    <div
-        class="flex flex-col justify-center space-y-8 md:space-y-0 md:space-x-12 max-w-6xl mx-auto animate"
-    >
-        <!-- Columna Diseño Gráfico Freelance (ocupa todo el ancho) -->
-        <Card class="p-8 w-full animate-on-scroll">
-            <h3 class="text-2xl lato-bold text-center mb-6">
-                Diseñador Gráfico Freelance
-            </h3>
-            <p
-                class="text-gray-600 dark:text-gray-300 text-center mb-6 lato-regular"
-            >
-                2014 – Actualidad
-            </p>
-            <div class="text-lg grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div class="flex items-center space-x-3">
-                    <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
-                    <div>
-                        <h4 class="lato-bold">
-                            Branding e identidad institucional
-                        </h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                            Experto
-                        </p>
+<section id="experience" class="relative">
+    <div id="exp-pin" class="py-16 px-6 md:px-12">
+        <h2 class="text-4xl lato-black text-center mb-12 mt-4 overflow-hidden">
+            <span class="exp-split-text inline-block">Experiencia</span>
+            <span class="exp-split-text inline-block">Profesional</span>
+        </h2>
+        <div class="flex flex-col justify-center space-y-8 md:space-y-0 md:space-x-12 max-w-6xl mx-auto">
+            <Card class="exp-card p-8 w-full">
+                <h3 class="text-2xl lato-bold text-center mb-6">
+                    Diseñador Gráfico Freelance
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 text-center mb-6 lato-regular">
+                    2014 – Actualidad
+                </p>
+                <div class="text-lg grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="exp-skill flex items-center space-x-3">
+                        <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
+                        <div>
+                            <h4 class="lato-bold">Branding e identidad institucional</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Experto</p>
+                        </div>
+                    </div>
+                    <div class="exp-skill flex items-center space-x-3">
+                        <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
+                        <div>
+                            <h4 class="lato-bold">Diseño editorial</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Experto</p>
+                        </div>
+                    </div>
+                    <div class="exp-skill flex items-center space-x-3">
+                        <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
+                        <div>
+                            <h4 class="lato-bold">Diseño para redes sociales</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Experto</p>
+                        </div>
+                    </div>
+                    <div class="exp-skill flex items-center space-x-3">
+                        <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
+                        <div>
+                            <h4 class="lato-bold">Adobe (Illustrator, Photoshop, InDesign)</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Experto</p>
+                        </div>
+                    </div>
+                    <div class="exp-skill flex items-center space-x-3">
+                        <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
+                        <div>
+                            <h4 class="lato-bold">Diseño web</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Intermedio</p>
+                        </div>
+                    </div>
+                    <div class="exp-skill flex items-center space-x-3">
+                        <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
+                        <div>
+                            <h4 class="lato-bold">Astro, Tailwind CSS y TypeScript</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Intermedio</p>
+                        </div>
+                    </div>
+                    <div class="exp-skill flex items-center space-x-3">
+                        <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
+                        <div>
+                            <h4 class="lato-bold">HTML, CSS y JavaScript</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Intermedio</p>
+                        </div>
+                    </div>
+                    <div class="exp-skill flex items-center space-x-3">
+                        <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
+                        <div>
+                            <h4 class="lato-bold">Trabajo autónomo y en equipo</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Experto</p>
+                        </div>
+                    </div>
+                    <div class="exp-skill flex items-center space-x-3">
+                        <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
+                        <div>
+                            <h4 class="lato-bold">Pensamiento estratégico y enfoque comunicacional</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Experto</p>
+                        </div>
                     </div>
                 </div>
-                <div class="flex items-center space-x-3">
-                    <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
-                    <div>
-                        <h4 class="lato-bold">Diseño editorial</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                            Experto
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
-                    <div>
-                        <h4 class="lato-bold">Diseño para redes sociales</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                            Experto
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
-                    <div>
-                        <h4 class="lato-bold">
-                            Adobe (Illustrator, Photoshop, InDesign)
-                        </h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                            Experto
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
-                    <div>
-                        <h4 class="lato-bold">Diseño web</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                            Intermedio
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
-                    <div>
-                        <h4 class="lato-bold">
-                            Astro, Tailwind CSS y TypeScript
-                        </h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                            Intermedio
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
-                    <div>
-                        <h4 class="lato-bold">HTML, CSS y JavaScript</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                            Intermedio
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
-                    <div>
-                        <h4 class="lato-bold">Trabajo autónomo y en equipo</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                            Experto
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <Image src={tilde} alt="Freelance Icon" class="w-7 h-7" />
-                    <div>
-                        <h4 class="lato-bold">
-                            Pensamiento estratégico y enfoque comunicacional
-                        </h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                            Experto
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </Card>
+            </Card>
+        </div>
     </div>
 </section>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+        gsap.set(".exp-split-text", { y: 100, opacity: 0 });
+        gsap.set(".exp-card", { opacity: 0, y: 50 });
+        gsap.set(".exp-skill", { opacity: 0, y: 30 });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#exp-pin",
+                start: "top top",
+                end: "+=100%",
+                pin: true,
+                scrub: 1
+            }
+        });
+
+        tl.to(".exp-split-text", {
+                y: 0,
+                opacity: 1,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: "power3.out"
+            })
+            .to(".exp-card", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to(".exp-skill", {
+                opacity: 1,
+                y: 0,
+                stagger: 0.08,
+                duration: 0.5,
+                ease: "power2.out"
+            }, "-=0.2");
+
+        const st = tl.scrollTrigger;
+
+        function jumpToExpEnd() {
+            if (!st) return;
+            window.scrollTo({ top: st.end + 1, behavior: "instant" });
+            tl.progress(1);
+        }
+
+        if (window.location.hash === "#experience") {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    ScrollTrigger.refresh();
+                    jumpToExpEnd();
+                });
+            });
+        }
+
+        const onHashChange = () => {
+            if (window.location.hash === "#experience") {
+                jumpToExpEnd();
+            }
+        };
+
+        window.addEventListener("hashchange", onHashChange);
+
+        return () => {
+            tl.kill();
+            ScrollTrigger.getById(tl.scrollTrigger?.vars?.id)?.kill();
+            window.removeEventListener("hashchange", onHashChange);
+        };
+    });
+
+    mm.add("(max-width: 767px)", () => {
+        gsap.set(".exp-split-text", { y: 50, opacity: 0 });
+        gsap.set(".exp-card", { opacity: 0, y: 30 });
+        gsap.set(".exp-skill", { opacity: 0, y: 20 });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#exp-pin",
+                start: "top 80%",
+                toggleActions: "play none none none",
+            }
+        });
+
+        tl.to(".exp-split-text", {
+                y: 0,
+                opacity: 1,
+                stagger: 0.15,
+                duration: 0.6,
+                ease: "power3.out"
+            })
+            .to(".exp-card", {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power2.out"
+            }, "-=0.2")
+            .to(".exp-skill", {
+                opacity: 1,
+                y: 0,
+                stagger: 0.06,
+                duration: 0.4,
+                ease: "power2.out"
+            }, "-=0.2");
+
+        function jumpToExpEndMobile() {
+            tl.progress(1);
+        }
+
+        if (window.location.hash === "#experience") {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    jumpToExpEndMobile();
+                });
+            });
+        }
+
+        const onHashChangeMobile = () => {
+            if (window.location.hash === "#experience") {
+                jumpToExpEndMobile();
+            }
+        };
+
+        window.addEventListener("hashchange", onHashChangeMobile);
+
+        return () => {
+            tl.kill();
+            ScrollTrigger.getById(tl.scrollTrigger?.vars?.id)?.kill();
+            window.removeEventListener("hashchange", onHashChangeMobile);
+        };
+    });
+</script>

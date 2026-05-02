@@ -68,20 +68,23 @@ const {
     .boton-cv:active,
     .boton-cv:hover {
         outline: 0;
+        background-color: #fefffa;
     }
 
     .boton-cv span {
-        background-color: rgb(5, 6, 45);
-        border-radius: 0px; /* Aseguro que el interior también tenga bordes rectos si el padre los tiene */
+        background-color: #fefffa;
+        border-radius: 0px;
         padding: 16px 24px;
         width: 100%;
         height: 100%;
         transition: 300ms;
-        display: block; /* Para que ocupe todo el espacio */
+        display: block;
+        color: #101820;
     }
 
-    .boton-cv:hover span {
-        background: none;
+    :global(body.dark-mode) .boton-cv span {
+        background-color: #101820;
+        color: #fefffa;
     }
 
     @media (min-width: 768px) {
@@ -93,13 +96,13 @@ const {
 
     .boton {
         align-items: center;
-        background-color: #fff;
+        background-color: #fefffa;
         border-radius: 0px;
         box-shadow:
             transparent 0 0 0 3px,
-            rgba(18, 18, 18, 0.1) 0 6px 20px;
+            rgba(16, 24, 32, 0.1) 0 6px 20px;
         box-sizing: border-box;
-        color: var(--color-azul-oscuro);
+        color: #101820;
         cursor: pointer;
         display: inline-flex;
         flex: 1 1 auto;
@@ -124,22 +127,21 @@ const {
 
     .boton:hover {
         box-shadow:
-            var(--color-azul-oscuro) 0 0 0 3px,
+            #101820 0 0 0 3px,
             transparent 0 0 0 0;
     }
 
-    /* Variante oscura para los botones outline */
     :global(body.dark-mode) .boton {
-        background-color: #05062d;
+        background-color: #101820;
         box-shadow:
             transparent 0 0 0 3px,
-            rgba(255, 255, 255, 0.1) 0 6px 20px;
-        color: #fff;
+            rgba(254, 255, 250, 0.1) 0 6px 20px;
+        color: #fefffa;
     }
 
     :global(body.dark-mode) .boton:hover {
         box-shadow:
-            #fff 0 0 0 3px,
+            #fefffa 0 0 0 3px,
             transparent 0 0 0 0;
     }
 </style>

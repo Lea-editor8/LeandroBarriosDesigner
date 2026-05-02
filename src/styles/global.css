@@ -2,6 +2,10 @@
 
 
 @theme {
+  --color-bg-light: #FEFFFA;
+  --color-bg-dark: #101820;
+  --color-text-light: #101820;
+  --color-text-dark: #FEFFFA;
 
   --color-violeta: oklch(0.6184 0.2654 306.37);
   --color-azul: oklch(0.5267 0.2481 280.03);

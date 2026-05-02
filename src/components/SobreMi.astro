@@ -5,46 +5,138 @@ import exp from "../assets/imagenes/exp.svg";
 import estudios from "../assets/imagenes/estudios.svg";
 ---
 
-<section id="about" class="py-16 px-6 md:px-12">
-    <h2 class="text-4xl lato-black text-center mb-12 mt-4">Sobre Mí</h2>
-    <div
-        class="flex flex-col items-center max-w-6xl mx-auto space-y-8 md:space-y-0 animate"
-    >
-        <div class="w-full">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <Card class="text-center h-full flex flex-col justify-center">
-                    <Image
-                        src={exp}
-                        alt="Experiencia"
-                        class="w-16 h-16 mx-auto mb-4"
-                    />
-                    <h3 class="text-xl lato-bold">Experiencia</h3>
-                    <p class="text-lg lato-regular">10+ años</p>
-                    <p class="text-lg lato-regular">Diseño Gráfico</p>
-                </Card>
-                <Card class="text-center h-full flex flex-col justify-center">
-                    <Image
-                        src={estudios}
-                        alt="Formación"
-                        class="w-16 h-16 mx-auto mb-4"
-                    />
-                    <h3 class="text-xl lato-bold">Formación</h3>
-                    <p class="text-lg lato-regular">Diseño Gráfico</p>
-                    <p class="text-lg lato-regular">Escuela de Arte Luján</p>
-                </Card>
+<section id="about" class="relative">
+    <div id="about-pin" class="py-12 sm:py-16 px-4 sm:px-6 md:px-12 overflow-hidden">
+        <h2 class="text-3xl sm:text-4xl lato-black text-center mb-8 sm:mb-12 mt-2 sm:mt-4 overflow-hidden">
+            <span class="about-split-text inline-block">Sobre</span>
+            <span class="about-split-text inline-block">Mí</span>
+        </h2>
+        <div class="flex flex-col items-center max-w-6xl mx-auto space-y-6 sm:space-y-8">
+            <div class="w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                    <Card class="about-card text-center h-full flex flex-col justify-center">
+                        <Image
+                            src={exp}
+                            alt="Experiencia"
+                            class="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4"
+                        />
+                        <h3 class="text-lg sm:text-xl lato-bold">Experiencia</h3>
+                        <p class="text-base sm:text-lg lato-regular">10+ años</p>
+                        <p class="text-base sm:text-lg lato-regular">Diseño Gráfico</p>
+                    </Card>
+                    <Card class="about-card text-center h-full flex flex-col justify-center">
+                        <Image
+                            src={estudios}
+                            alt="Formación"
+                            class="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4"
+                        />
+                        <h3 class="text-lg sm:text-xl lato-bold">Formación</h3>
+                        <p class="text-base sm:text-lg lato-regular">Diseño Gráfico</p>
+                        <p class="text-base sm:text-lg lato-regular">Escuela de Arte Luján</p>
+                    </Card>
+                </div>
+                <p id="about-text" class="text-base sm:text-lg md:text-xl text-left lato-regular tracking-[0.01em] leading-relaxed sm:leading-loose">
+                    Diseñador gráfico con más de 10 años de experiencia en branding,
+                    identidad institucional, diseño editorial, comunicación visual
+                    para redes sociales y diseño web. He trabajado de forma
+                    independiente y en colaboración con instituciones, emprendedores
+                    y equipos creativos, desarrollando piezas visuales que combinan
+                    estética, estrategia y funcionalidad. Me especializo en
+                    construir marcas sólidas y coherentes, con una mirada integral y
+                    adaptable a distintos medios y plataformas.
+                </p>
             </div>
-            <p
-                class="text-xl text-left lato-regular tracking-[0.01em] leading-loose"
-            >
-                Diseñador gráfico con más de 10 años de experiencia en branding,
-                identidad institucional, diseño editorial, comunicación visual
-                para redes sociales y diseño web. He trabajado de forma
-                independiente y en colaboración con instituciones, emprendedores
-                y equipos creativos, desarrollando piezas visuales que combinan
-                estética, estrategia y funcionalidad. Me especializo en
-                construir marcas sólidas y coherentes, con una mirada integral y
-                adaptable a distintos medios y plataformas.
-            </p>
         </div>
     </div>
 </section>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+        gsap.set(".about-split-text", { y: 100, opacity: 0 });
+        gsap.set(".about-card", { opacity: 0, y: 50 });
+        gsap.set("#about-text", { opacity: 0, y: 30 });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#about-pin",
+                start: "top top",
+                end: "+=100%",
+                pin: true,
+                scrub: 1,
+            }
+        });
+
+        tl.to(".about-split-text", {
+                y: 0,
+                opacity: 1,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: "power3.out"
+            })
+            .to(".about-card", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.15,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to("#about-text", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3");
+
+        return () => {
+            tl.kill();
+            ScrollTrigger.getById(tl.scrollTrigger?.vars?.id)?.kill();
+        };
+    });
+
+    mm.add("(max-width: 767px)", () => {
+        gsap.set(".about-split-text", { y: 50, opacity: 0 });
+        gsap.set(".about-card", { opacity: 0, y: 30 });
+        gsap.set("#about-text", { opacity: 0, y: 20 });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#about-pin",
+                start: "top 80%",
+                toggleActions: "play none none none",
+            }
+        });
+
+        tl.to(".about-split-text", {
+                y: 0,
+                opacity: 1,
+                stagger: 0.15,
+                duration: 0.6,
+                ease: "power3.out"
+            })
+            .to(".about-card", {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.1,
+                ease: "power2.out"
+            }, "-=0.2")
+            .to("#about-text", {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power2.out"
+            }, "-=0.2");
+
+        return () => {
+            tl.kill();
+            ScrollTrigger.getById(tl.scrollTrigger?.vars?.id)?.kill();
+        };
+    });
+</script>
