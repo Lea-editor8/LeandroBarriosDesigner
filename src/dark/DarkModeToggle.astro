@@ -1,142 +1,48 @@
 ---
+import light from "../assets/iconos/sun.svg";
+import dark from "../assets/iconos/moon.svg";
 ---
 
-<div class="checkbox-wrapper-10">
-  <input class="tgl tgl-flip" id="theme-toggle" type="checkbox" />
-  <label class="tgl-btn" data-tg-on="☀️" data-tg-off="🌙" for="theme-toggle"></label>
-</div>
+<button id="theme-toggle" class="p-2 cursor-pointer" aria-label="Toggle theme">
+  <img
+    src={light.src}
+    alt="Modo claro"
+    class="theme-icon icon-sun w-4 h-4 md:w-5 md:h-5"
+  />
+  <img
+    src={dark.src}
+    alt="Modo oscuro"
+    class="theme-icon icon-moon w-4 h-4 md:w-5 md:h-5 hidden"
+  />
+</button>
 
 <script>
-  const themeToggle = document.getElementById('theme-toggle');
+  const toggle = document.getElementById("theme-toggle");
+  const iconSun = toggle.querySelector(".icon-sun");
+  const iconMoon = toggle.querySelector(".icon-moon");
   const body = document.body;
-  const localStorageKey = 'theme';
+  const key = "theme";
 
-  // Verificar el tema guardado
-  const currentTheme = localStorage.getItem(localStorageKey);
-
-  if (currentTheme === 'dark-mode') {
-    body.classList.add('dark-mode');
-    themeToggle.checked = true; // <-- marcar el checkbox si es oscuro
-  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    body.classList.add('dark-mode');
-    themeToggle.checked = true;
+  function setTheme(isDark) {
+    body.classList.toggle("dark-mode", isDark);
+    iconSun.classList.toggle("hidden", !isDark);
+    iconMoon.classList.toggle("hidden", isDark);
+    localStorage.setItem(key, isDark ? "dark-mode" : "");
   }
 
-  themeToggle.addEventListener('click', () => {
-    if (themeToggle.checked) {
-      body.classList.add('dark-mode');
-      localStorage.setItem(localStorageKey, 'dark-mode');
-    } else {
-      body.classList.remove('dark-mode');
-      localStorage.setItem(localStorageKey, '');
-    }
+  const saved = localStorage.getItem(key);
+  setTheme(
+    saved === "dark-mode" ||
+      (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches),
+  );
+
+  toggle.addEventListener("click", () => {
+    setTheme(!body.classList.contains("dark-mode"));
   });
 </script>
 
 <style>
-  .checkbox-wrapper-10 .tgl {
-    display: none;
-  }
-  .checkbox-wrapper-10 .tgl,
-  .checkbox-wrapper-10 .tgl:after,
-  .checkbox-wrapper-10 .tgl:before,
-  .checkbox-wrapper-10 .tgl *,
-  .checkbox-wrapper-10 .tgl *:after,
-  .checkbox-wrapper-10 .tgl *:before,
-  .checkbox-wrapper-10 .tgl + .tgl-btn {
-    box-sizing: border-box;
-  }
-  .checkbox-wrapper-10 .tgl::-moz-selection,
-  .checkbox-wrapper-10 .tgl:after::-moz-selection,
-  .checkbox-wrapper-10 .tgl:before::-moz-selection,
-  .checkbox-wrapper-10 .tgl *::-moz-selection,
-  .checkbox-wrapper-10 .tgl *:after::-moz-selection,
-  .checkbox-wrapper-10 .tgl *:before::-moz-selection,
-  .checkbox-wrapper-10 .tgl + .tgl-btn::-moz-selection,
-  .checkbox-wrapper-10 .tgl::selection,
-  .checkbox-wrapper-10 .tgl:after::selection,
-  .checkbox-wrapper-10 .tgl:before::selection,
-  .checkbox-wrapper-10 .tgl *::selection,
-  .checkbox-wrapper-10 .tgl *:after::selection,
-  .checkbox-wrapper-10 .tgl *:before::selection,
-  .checkbox-wrapper-10 .tgl + .tgl-btn::selection {
-    background: none;
-  }
-  .checkbox-wrapper-10 .tgl + .tgl-btn {
-    outline: 0;
-    display: block;
-    width: 4em;
-    height: 2em;
-    position: relative;
-    cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-  }
-  .checkbox-wrapper-10 .tgl + .tgl-btn:after,
-  .checkbox-wrapper-10 .tgl + .tgl-btn:before {
-    position: relative;
-    display: block;
-    content: "";
-    width: 50%;
-    height: 100%;
-  }
-  .checkbox-wrapper-10 .tgl + .tgl-btn:after {
-    left: 0;
-  }
-  .checkbox-wrapper-10 .tgl + .tgl-btn:before {
-    display: none;
-  }
-  .checkbox-wrapper-10 .tgl:checked + .tgl-btn:after {
-    left: 50%;
-  }
-
-  .checkbox-wrapper-10 .tgl-flip + .tgl-btn {
-    padding: 2px;
-    transition: all 0.2s ease;
-    font-family: sans-serif;
-    perspective: 100px;
-  }
-  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:after,
-  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:before {
-    display: inline-block;
-    transition: all 0.4s ease;
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    line-height: 2em;
-    font-weight: bold;
-    color: #000000;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    border-radius: ;
-  }
-  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:after {
-    content: attr(data-tg-on);
-    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-    transform: rotateY(-180deg);
-  }
-  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:before {
-    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-    content: attr(data-tg-off);
-  }
-  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:active:before {
-    transform: rotateY(-20deg);
-  }
-  .checkbox-wrapper-10 .tgl-flip:checked + .tgl-btn:before {
-    transform: rotateY(180deg);
-  }
-  .checkbox-wrapper-10 .tgl-flip:checked + .tgl-btn:after {
-    transform: rotateY(0);
-    left: 0;
-    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-  }
-  .checkbox-wrapper-10 .tgl-flip:checked + .tgl-btn:active:after {
-    transform: rotateY(20deg);
+  body.dark-mode .theme-icon {
+    filter: invert(1);
   }
 </style>
-
