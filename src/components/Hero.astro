@@ -5,11 +5,12 @@ import Button from "@components/ui/Button.astro";
 import { Image } from "astro:assets";
 import perfil from "../assets/imagenes/perfil-lean.jpg";
 import perfilColor from "../assets/imagenes/perfil-lean-color.jpg";
+import MouseScroll from "../assets/iconos/mouse-scroll.svg";
 ---
 
 <section
     id="hero"
-    class="min-h-screen flex flex-col md:flex-row items-center justify-center pt-24 pb-12"
+    class="min-h-screen flex flex-col md:flex-row items-center justify-center pt-24 pb-12 relative"
 >
     <!-- Contenedor de la foto de perfil -->
     <!-- Se ajusta el margen derecho para la separación de 50px en pantallas medianas y grandes -->
@@ -59,6 +60,10 @@ import perfilColor from "../assets/imagenes/perfil-lean-color.jpg";
                 <li><Redes /></li>
             </ul>
         </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <MouseScroll class="w-10 h-10 hover:scale-0.25 transition-transform" />
     </div>
 </section>
 

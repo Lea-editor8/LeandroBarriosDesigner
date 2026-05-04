@@ -4,11 +4,12 @@ import ProjectCard from "@components/ui/ProjectCard.astro";
 import Modal from "@components/ui/Modal.astro";
 ---
 
-<section id="projects" class="py-16 px-0 md:px-0">
-    <h2 class="text-4xl lato-black text-center mb-12 mt-8 animate">
-        Proyectos
+<section id="projects" class="py-16 px-0 md:px-0 overflow-x-hidden">
+    <h2 class="text-4xl lato-black text-center mb-12 mt-8 overflow-hidden">
+        <span class="proj-title inline-block">Proyectos</span>
     </h2>
     <div
+        id="proj-grid"
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full grid-flow-dense px-4 md:px-12"
     >
         {
@@ -33,7 +34,6 @@ import Modal from "@components/ui/Modal.astro";
                         descripcion={proyecto.descripcion}
                         linkExterno={proyecto.linkExterno}
                         large={isLarge}
-                        delay={(index % 6) * 100}
                     />
                 );
             })
@@ -42,3 +42,85 @@ import Modal from "@components/ui/Modal.astro";
 
     <Modal />
 </section>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+        gsap.set(".proj-title", { y: 80, opacity: 0 });
+        gsap.set(".proj-card", { opacity: 0, y: 60, scale: 0.92 });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#proj-grid",
+                start: "top 75%",
+                end: "+=100%",
+                pin: false,
+                scrub: 1,
+            },
+        });
+
+        tl.to(".proj-title", {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: "power3.out",
+        }).to(
+            ".proj-card",
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                stagger: { each: 0.04, from: "start" },
+                duration: 0.5,
+                ease: "back.out(1.7)",
+            },
+            "-=0.3",
+        );
+
+        return () => {
+            tl.kill();
+            ScrollTrigger.getById(tl.scrollTrigger?.vars?.id)?.kill();
+        };
+    });
+
+    mm.add("(max-width: 767px)", () => {
+        gsap.set(".proj-title", { y: 40, opacity: 0 });
+        gsap.set(".proj-card", { opacity: 0, y: 30 });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#proj-grid",
+                start: "top 80%",
+                toggleActions: "play none none none",
+            },
+        });
+
+        tl.to(".proj-title", {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: "power3.out",
+        }).to(
+            ".proj-card",
+            {
+                opacity: 1,
+                y: 0,
+                stagger: { each: 0.03, from: "start" },
+                duration: 0.4,
+                ease: "power2.out",
+            },
+            "-=0.2",
+        );
+
+        return () => {
+            tl.kill();
+            ScrollTrigger.getById(tl.scrollTrigger?.vars?.id)?.kill();
+        };
+    });
+</script>
