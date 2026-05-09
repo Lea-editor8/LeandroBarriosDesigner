@@ -327,6 +327,6 @@ export const proyectos: Project[] = [
     imgPortada: "/imagenes/01-mapa-sem.jpg",
     imgFull: "/imagenes/01-mapa-sem.jpg",
     titulo: "Diseño de Mapas SEM (2021)",
-    descripcion: ""
+    descripcion: "Diseño integral del sistema de identidad visual para el 'Sistema de Estacionamiento Medido': desarrollo de marca, cartelería, señalética, piezas informativas, infracciones, mapas y contenido para redes sociales."
   }
 ];
