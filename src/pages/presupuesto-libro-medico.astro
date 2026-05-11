@@ -1,0 +1,591 @@
+---
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Propuesta Técnica — Ecosistema Digital Libro Médico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colors */
+            --color-midnight-void: #101820;
+            --color-ghost-white: #e2e2e2;
+            --color-shadow-charcoal: #3d3d3d;
+            --color-polar-mist: #ffffff;
+            
+            /* Typography */
+            --font-display: 'Syne', ui-sans-serif, system-ui, -apple-system, sans-serif;
+            --font-mono: 'Space Mono', ui-monospace, monospace;
+            
+            /* Spacing */
+            --spacing-4: 4px;
+            --spacing-12: 12px;
+            --spacing-16: 16px;
+            --spacing-24: 24px;
+            --spacing-40: 40px;
+            --spacing-48: 48px;
+            --spacing-60: 60px;
+            --spacing-80: 80px;
+            
+            /* Layout */
+            --section-gap: 40px;
+            --max-width: 1100px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--color-midnight-void);
+            color: var(--color-ghost-white);
+            font-family: var(--font-display);
+            font-size: 16px;
+            line-height: 1.3;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--spacing-60) var(--spacing-24);
+        }
+        
+        /* Header */
+        .header {
+            border-bottom: 1px solid var(--color-shadow-charcoal);
+            padding-bottom: var(--spacing-60);
+            margin-bottom: var(--spacing-80);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-40);
+            flex-wrap: wrap;
+            gap: var(--spacing-24);
+        }
+        
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: var(--spacing-4) var(--spacing-12);
+            border: 1px solid var(--color-ghost-white);
+            display: inline-block;
+        }
+        
+        .date {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--color-ghost-white);
+            opacity: 0.6;
+        }
+        
+        .title {
+            font-size: clamp(32px, 6vw, 72px);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            font-weight: 800;
+            margin-bottom: var(--spacing-24);
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            line-height: 1.3;
+            font-weight: 400;
+            max-width: 700px;
+            opacity: 0.85;
+        }
+        
+        .prestador {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            margin-top: var(--spacing-16);
+            padding-top: var(--spacing-16);
+            border-top: 1px solid var(--color-shadow-charcoal);
+        }
+        
+        /* Sections */
+        section {
+            margin-bottom: var(--spacing-80);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+        section:nth-child(5) { animation-delay: 0.4s; }
+        section:nth-child(6) { animation-delay: 0.5s; }
+        section:nth-child(7) { animation-delay: 0.6s; }
+        section:nth-child(8) { animation-delay: 0.7s; }
+        
+        .section-number {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--color-ghost-white);
+            opacity: 0.5;
+            margin-bottom: var(--spacing-12);
+            letter-spacing: 0.1em;
+        }
+        
+        .section-title {
+            font-size: clamp(24px, 4vw, 40px);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+            margin-bottom: var(--spacing-24);
+            border-left: 3px solid var(--color-ghost-white);
+            padding-left: var(--spacing-16);
+        }
+        
+        .section-content {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 900px;
+        }
+        
+        .section-content p {
+            margin-bottom: var(--spacing-24);
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-24);
+            margin-top: var(--spacing-40);
+        }
+        
+        .feature-card {
+            border: 1px solid var(--color-shadow-charcoal);
+            padding: var(--spacing-24);
+            transition: border-color 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--color-ghost-white);
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-12);
+            letter-spacing: -0.01em;
+        }
+        
+        .feature-desc {
+            font-size: 17px;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
+        
+        /* List */
+        ul {
+            list-style: none;
+            margin-top: var(--spacing-24);
+        }
+        
+        li {
+            padding-left: var(--spacing-24);
+            margin-bottom: var(--spacing-16);
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            font-family: var(--font-mono);
+        }
+        
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: var(--spacing-40);
+            border: 1px solid var(--color-shadow-charcoal);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-mono);
+            font-size: 14px;
+        }
+        
+        thead {
+            background: var(--color-ghost-white);
+            color: var(--color-midnight-void);
+        }
+        
+        th {
+            text-align: left;
+            padding: var(--spacing-16);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 12px;
+        }
+        
+        td {
+            padding: var(--spacing-16);
+            border-top: 1px solid var(--color-shadow-charcoal);
+        }
+        
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+        
+        tbody tr:hover {
+            background: rgba(226, 226, 226, 0.096);
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            border: 2px solid var(--color-ghost-white);
+            padding: var(--spacing-40);
+            margin: var(--spacing-60) 0;
+            position: relative;
+        }
+        
+        .highlight-box::before {
+            content: 'ESTRATEGIA';
+            position: absolute;
+            top: -10px;
+            left: var(--spacing-24);
+            background: var(--color-midnight-void);
+            padding: 0 var(--spacing-12);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+        }
+        
+        .highlight-content {
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .highlight-content strong {
+            font-weight: 700;
+            color: var(--color-polar-mist);
+        }
+        
+        /* Price Section */
+        .price-section {
+            border: 2px solid var(--color-ghost-white);
+            padding: var(--spacing-48);
+            margin-top: var(--spacing-60);
+            text-align: center;
+        }
+        
+        .price-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-16);
+            opacity: 0.7;
+        }
+        
+        .price-amount {
+            font-size: clamp(24px, 8vw, 50px);
+            line-height: 1;
+            letter-spacing: -0.03em;
+            font-weight: 800;
+            margin-bottom: var(--spacing-24);
+        }
+        
+        .price-details {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+        
+        .price-payment {
+            margin-top: var(--spacing-40);
+            padding-top: var(--spacing-24);
+            border-top: 1px solid var(--color-shadow-charcoal);
+            font-size: 17px;
+        }
+        
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--color-shadow-charcoal);
+            padding-top: var(--spacing-40);
+            margin-top: var(--spacing-80);
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            opacity: 0.5;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-40) var(--spacing-16);
+            }
+            
+            .header-top {
+                flex-direction: column;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: var(--spacing-12);
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            section {
+                opacity: 1;
+                animation: none;
+                page-break-inside: avoid;
+            }
+            
+            .header {
+                opacity: 1;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-top">
+                <div class="tag">PROPUESTA TÉCNICA Y ECONÓMICA</div>
+                <div class="date">9 de mayo de 2026</div>
+            </div>
+            <h1 class="title">Web y SEO para Libro Médico</h1>
+            <p class="subtitle">Landing Page + Documentación Abierta: Plataforma de alto impacto diseñada para posicionar la marca personal del autor y maximizar la difusión mediante una arquitectura de contenido abierto.</p>
+            <div class="prestador">Leandro Barrios — Diseñador gráfico y web</div>
+        </header>
+
+        <section>
+            <div class="section-number">01</div>
+            <h2 class="section-title">Alcance del Servicio</h2>
+            <div class="section-content">
+                <p>Desarrollo de una plataforma digital de alto impacto diseñada para posicionar la marca personal del autor y maximizar la difusión del libro mediante una arquitectura de contenido abierto.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-title">Diseño Personalizado</div>
+                        <div class="feature-desc">Interfaz 100% personalizada, con estética profesional, optimizada para la legibilidad técnica.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Frontend Moderno</div>
+                        <div class="feature-desc">Programación con Astro, Tailwind CSS y TypeScript. SSG para carga instantánea y rendimiento óptimo.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Hero Section</div>
+                        <div class="feature-desc">Impacto visual con propuesta de valor y llamada a la acción efectiva.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Sección Autor</div>
+                        <div class="feature-desc">Espacio para trayectoria, visión y validación académica del profesional.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Documentación Interactiva</div>
+                        <div class="feature-desc">Implementación de Astro Content Collections. Cada capítulo con URL única indexable individualmente.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Índice Dinámico</div>
+                        <div class="feature-desc">Navegación lateral para acceso rápido entre temas y capítulos.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Módulo de Descarga</div>
+                        <div class="feature-desc">Acceso directo al manual completo en formato PDF.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Ecosistema Social</div>
+                        <div class="feature-desc">Enlaces integrados a perfiles profesionales y botones para compartir capítulos específicos.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-number">02</div>
+            <h2 class="section-title">Infraestructura y Seguridad</h2>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Dominio:</strong> Registro de dominio (.com, .org) incluido por el primer año.</li>
+                    <li><strong>Seguridad (Cloudflare):</strong> Certificado SSL (HTTPS) y protección contra ataques DDoS.</li>
+                    <li><strong>Despliegue Continuo (CI/CD):</strong> Configuración de repositorio privado en GitHub y despliegue automático.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-number">03</div>
+            <h2 class="section-title">Fases del Proyecto</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fase</th>
+                            <th>Descripción</th>
+                            <th>Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01. Brief y Estructura</td>
+                            <td>Definición de contenidos, capítulos clave y flujo</td>
+                            <td>3 días</td>
+                        </tr>
+                        <tr>
+                            <td>02. Diseño y Prototipado</td>
+                            <td>Creación de la interfaz visual (UI) y UX</td>
+                            <td>4 días</td>
+                        </tr>
+                        <tr>
+                            <td>03. Desarrollo y Contenido</td>
+                            <td>Programación en Astro y carga de capítulos</td>
+                            <td>10 días</td>
+                        </tr>
+                        <tr>
+                            <td>04. Despliegue y Entrega</td>
+                            <td>Pruebas, configuración DNS y puesta en producción</td>
+                            <td>3 días</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-number">04</div>
+            <h2 class="section-title">Estrategia de Visibilidad e Indexación (SEO)</h2>
+            <div class="section-content">
+                <ul>
+                    <li><strong>SEO de Capítulos (SSG):</strong> Al desglosar el libro en páginas independientes, atacamos búsquedas específicas.</li>
+                    <li><strong>Indexación Automatizada:</strong> Generación de Sitemap XML y archivo robots.txt.</li>
+                    <li><strong>Metadatos Open Graph:</strong> Optimización para previsualizaciones profesionales en redes sociales.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-number">05</div>
+            <h2 class="section-title">Nota Estratégica sobre Posicionamiento SEO</h2>
+            <div class="section-content">
+                <p>Es importante destacar que el posicionamiento en Google es un proceso acumulativo y competitivo:</p>
+                
+                <div class="highlight-box">
+                    <div class="highlight-content">
+                        <p><strong>Términos Generales:</strong> Palabras de alta competencia (ej: "punciones renales") suelen estar dominadas por instituciones globales o portales con décadas de antigüedad. Aparecer en los primeros resultados para estos términos requiere tiempo y autoridad de dominio constante.</p>
+                        
+                        <p style="margin-top: 24px;"><strong>Estrategia de Especialidad y Marca:</strong> Nuestra propuesta se enfoca en ganar visibilidad mediante:</p>
+                        
+                        <ul style="margin-top: 16px;">
+                            <li><strong>Términos Técnicos Específicos (Long-Tail):</strong> Posicionamos frases técnicas donde la competencia es menor pero el interés profesional es máximo.</li>
+                            <li><strong>SEO Local y de Autoría:</strong> Vinculamos el contenido a la ubicación geográfica de los autores, su clínica o el nombre de su agrupación médica.</li>
+                            <li><strong>Dominio de Marca y Título:</strong> El punto más fuerte de posicionamiento será el propio nombre del libro, que se utilizará como dominio de la web. Esto garantiza que cuando alguien busque la obra por su nombre, la plataforma oficial aparezca en el primer resultado absoluto.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-number">06</div>
+            <h2 class="section-title">Optimización Académica: Google Scholar (Opcional)</h2>
+            <div class="section-content">
+                <p>Como complemento estratégico, se ofrece la asesoría para la configuración del perfil del autor en Google Scholar, lo que potencia la validez científica del sitio web.</p>
+                
+                <div class="features-grid" style="margin-top: 32px;">
+                    <div class="feature-card">
+                        <div class="feature-title">Configuración Básica</div>
+                        <div class="feature-desc">Registro y reclamo de publicaciones previas, vinculación con el nuevo dominio y carga manual de capítulos del libro.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Aumento de Autoridad (E-E-A-T)</div>
+                        <div class="feature-desc">Google confía más en sitios web vinculados a perfiles de autores académicos verificados.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Rastreo Especializado</div>
+                        <div class="feature-desc">Permite que el libro aparezca en búsquedas científicas y universitarias, no solo en la búsqueda general.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-title">Métricas de Citas</div>
+                        <div class="feature-desc">Facilita que otros profesionales citen la obra correctamente, aumentando la relevancia del autor en la comunidad médica.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-number">07</div>
+            <h2 class="section-title">Inversión Total</h2>
+            <div class="price-section">
+                <div class="price-label">Presupuesto Cerrado</div>
+                <div class="price-amount">$250.000</div>
+                <div class="price-details">
+                    Incluye: Desarrollo integral · Dominio (1 año)<br>
+                    Hosting inicial · Configuración de seguridad
+                </div>
+                <div class="price-payment">
+                    <strong>Forma de Pago</strong><br>
+                    50% al inicio del proyecto<br>
+                    50% contra entrega y despliegue final
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Propuesta generada el 9 de mayo de 2026 — Leandro Barrios
+        </footer>
+    </div>
+</body>
+</html>

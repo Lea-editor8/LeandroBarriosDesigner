@@ -1,0 +1,387 @@
+---
+interface Props {
+  title: string
+  subtitle?: string
+  date: Date
+  client?: string
+  tipo: string
+  prestador: string
+  precio: string
+  moneda?: string
+  incluye?: string
+  formaPago?: string
+  noindex?: boolean
+}
+
+const {
+  title,
+  subtitle,
+  date,
+  tipo,
+  prestador,
+  precio,
+  moneda = 'ARS',
+  incluye,
+  formaPago,
+  noindex = false,
+} = Astro.props
+
+const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+const fechaStr = `${date.getUTCDate()} de ${meses[date.getUTCMonth()]} de ${date.getUTCFullYear()}`
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {noindex && <meta name="robots" content="noindex">}
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{tipo} — {title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-midnight-void: #e2e2e2;
+      --color-ghost-white: #101820;
+      --color-shadow-charcoal: #3d3d3d;
+      --color-polar-mist: #212322;
+
+      --font-display: 'Syne', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --font-mono: 'Space Mono', ui-monospace, monospace;
+
+      --spacing-4: 4px;
+      --spacing-12: 12px;
+      --spacing-16: 16px;
+      --spacing-24: 24px;
+      --spacing-40: 40px;
+      --spacing-48: 48px;
+      --spacing-60: 60px;
+      --spacing-80: 80px;
+      --max-width: 1100px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--color-midnight-void);
+      color: var(--color-ghost-white);
+      font-family: var(--font-display);
+      font-size: 16px;
+      line-height: 1.3;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--spacing-60) var(--spacing-24);
+    }
+
+    /* Header */
+    .proposal-header {
+      border-bottom: 1px solid var(--color-shadow-charcoal);
+      padding-bottom: var(--spacing-60);
+      margin-bottom: var(--spacing-80);
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-40);
+      flex-wrap: wrap;
+      gap: var(--spacing-24);
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: var(--spacing-4) var(--spacing-12);
+      border: 1px solid var(--color-ghost-white);
+      display: inline-block;
+    }
+
+    .date {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      opacity: 0.6;
+    }
+
+    .proposal-title {
+      font-size: clamp(32px, 6vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin-bottom: var(--spacing-24);
+    }
+
+    .proposal-subtitle {
+      font-size: 20px;
+      line-height: 1.3;
+      font-weight: 400;
+      max-width: 700px;
+      opacity: 0.85;
+    }
+
+    .prestador {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      margin-top: var(--spacing-16);
+      padding-top: var(--spacing-16);
+      border-top: 1px solid var(--color-shadow-charcoal);
+    }
+
+    /* Content wrapper — CSS counter for sections */
+    .proposal-content {
+      counter-reset: section;
+    }
+
+    .proposal-content :global(h2) {
+      counter-increment: section;
+      font-size: clamp(24px, 4vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      margin-bottom: var(--spacing-24);
+      border-left: 3px solid var(--color-ghost-white);
+      padding-left: var(--spacing-16);
+    }
+
+    .proposal-content :global(h2)::before {
+      content: counter(section, decimal-leading-zero);
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-ghost-white);
+      opacity: 0.5;
+      margin-bottom: var(--spacing-12);
+      letter-spacing: 0.1em;
+      border-left: none;
+    }
+
+    .proposal-content :global(p) {
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 900px;
+      margin-bottom: var(--spacing-24);
+    }
+
+    .proposal-content :global(strong) {
+      font-weight: 700;
+      color: var(--color-polar-mist);
+    }
+
+    /* Lists */
+    .proposal-content :global(ul) {
+      list-style: none;
+      margin-top: var(--spacing-24);
+      margin-bottom: var(--spacing-24);
+    }
+
+    .proposal-content :global(li) {
+      padding-left: var(--spacing-24);
+      margin-bottom: var(--spacing-16);
+      position: relative;
+      line-height: 1.6;
+      max-width: 900px;
+    }
+
+    .proposal-content :global(li::before) {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      font-family: var(--font-mono);
+    }
+
+    /* Tables */
+    .proposal-content :global(.table-wrapper),
+    .proposal-content :global(table) {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 15px;
+      margin-top: var(--spacing-40);
+      margin-bottom: var(--spacing-24);
+    }
+
+    .proposal-content :global(thead) {
+      background: var(--color-ghost-white);
+      color: var(--color-midnight-void);
+    }
+
+    .proposal-content :global(th) {
+      text-align: left;
+      padding: var(--spacing-16);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 13px;
+    }
+
+    .proposal-content :global(td) {
+      padding: var(--spacing-16);
+      border-top: 1px solid var(--color-shadow-charcoal);
+    }
+
+    .proposal-content :global(tbody tr) {
+      transition: background 0.2s ease;
+    }
+
+    .proposal-content :global(tbody tr:hover) {
+      background: rgba(255, 255, 255, 0.50);
+    }
+
+    /* Blockquote — highlight box */
+    .proposal-content :global(blockquote) {
+      border: 2px solid var(--color-ghost-white);
+      padding: var(--spacing-40);
+      margin: var(--spacing-60) 0;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* Price Section */
+    .price-section {
+      border: 2px solid var(--color-ghost-white);
+      padding: var(--spacing-48);
+      margin-top: var(--spacing-60);
+      text-align: center;
+    }
+
+    .price-label {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: var(--spacing-16);
+      opacity: 0.7;
+    }
+
+    .price-amount {
+      font-size: clamp(24px, 8vw, 50px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin-bottom: var(--spacing-24);
+    }
+
+    .price-details {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+
+    .price-payment {
+      margin-top: var(--spacing-40);
+      padding-top: var(--spacing-24);
+      border-top: 1px solid var(--color-shadow-charcoal);
+      font-size: 16px;
+    }
+
+    .price-payment strong {
+      font-weight: 700;
+    }
+
+    /* Footer */
+    .proposal-footer {
+      border-top: 1px solid var(--color-shadow-charcoal);
+      padding-top: var(--spacing-40);
+      margin-top: var(--spacing-80);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      opacity: 0.5;
+    }
+
+    /* Sections — staggered animation */
+    .proposal-content > :global(*) {
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .proposal-content > :global(*:nth-child(1)) { animation-delay: 0.05s; }
+    .proposal-content > :global(*:nth-child(2)) { animation-delay: 0.1s; }
+    .proposal-content > :global(*:nth-child(3)) { animation-delay: 0.15s; }
+    .proposal-content > :global(*:nth-child(4)) { animation-delay: 0.2s; }
+    .proposal-content > :global(*:nth-child(5)) { animation-delay: 0.25s; }
+    .proposal-content > :global(*:nth-child(6)) { animation-delay: 0.3s; }
+    .proposal-content > :global(*:nth-child(7)) { animation-delay: 0.35s; }
+    .proposal-content > :global(*:nth-child(8)) { animation-delay: 0.4s; }
+    .proposal-content > :global(*:nth-child(9)) { animation-delay: 0.45s; }
+    .proposal-content > :global(*:nth-child(10)) { animation-delay: 0.5s; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: var(--spacing-40) var(--spacing-16); }
+      .header-top { flex-direction: column; }
+      table { font-size: 13px; }
+      th, td { padding: var(--spacing-12); }
+      .proposal-content :global(table) { font-size: 13px; }
+      .proposal-content :global(th),
+      .proposal-content :global(td) { padding: var(--spacing-12); }
+    }
+
+    /* Print */
+    @media print {
+      body { background: white; color: black; }
+      .proposal-header { opacity: 1; animation: none; }
+      .proposal-content > :global(*) { opacity: 1; animation: none; }
+      .proposal-content :global(thead) {
+        background: black; color: white;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="proposal-header">
+      <div class="header-top">
+        <div class="tag">{tipo}</div>
+        <div class="date">{fechaStr}</div>
+      </div>
+      <h1 class="proposal-title">{title}</h1>
+      {subtitle && <p class="proposal-subtitle">{subtitle}</p>}
+      <div class="prestador">{prestador}</div>
+    </header>
+
+    <div class="proposal-content">
+      <slot />
+    </div>
+
+    <section class="price-section">
+      <div class="price-label">Presupuesto Cerrado</div>
+      <div class="price-amount">{precio}</div>
+      {incluye && (
+        <div class="price-details">
+          {incluye.split('\n').map(line => <>{line}<br/></>)}
+        </div>
+      )}
+      {formaPago && (
+        <div class="price-payment">
+          <strong>Forma de Pago</strong><br/>
+          {formaPago.split('\n').map(line => <>{line}<br/></>)}
+        </div>
+      )}
+    </section>
+
+    <footer class="proposal-footer">
+      Propuesta generada el {fechaStr} — {prestador}
+    </footer>
+
+  </div>
+</body>
+</html>

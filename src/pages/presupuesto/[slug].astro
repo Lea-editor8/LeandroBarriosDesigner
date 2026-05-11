@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from 'astro:content'
+import PresupuestoLayout from '@layouts/PresupuestoLayout.astro'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const presupuestos = await getCollection('presupuestos')
+  return presupuestos.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+---
+
+<PresupuestoLayout
+  title={entry.data.title}
+  subtitle={entry.data.subtitle}
+  date={entry.data.date}
+  client={entry.data.client}
+  tipo={entry.data.tipo}
+  prestador={entry.data.prestador}
+  precio={entry.data.precio}
+  moneda={entry.data.moneda}
+  incluye={entry.data.incluye}
+  formaPago={entry.data.formaPago}
+  noindex={entry.data.noindex}
+>
+  <Content />
+</PresupuestoLayout>
