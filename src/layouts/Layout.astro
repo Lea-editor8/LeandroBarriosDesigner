@@ -31,7 +31,11 @@ import '@styles/global.css'
 		<meta name="twitter:description" content="Portfolio de Leandro Barrios, diseñador gráfico con experiencia en branding, diseño editorial y comunicación institucional.">
 		<meta name="twitter:image" content="/imagenes/image-web-site.jpg">
 	</head>
-	<body class="font-lato">
+	<body class="font-lato [&::-webkit-scrollbar]:w-2
+            [&::-webkit-scrollbar-track]:bg-slate-400
+            [&::-webkit-scrollbar-thumb]:bg-slate-600
+            [&::-webkit-scrollbar-thumb]:rounded-full
+            [&::-webkit-scrollbar-thumb]:hover:bg-gray-500">
 		<Header />
 				<main>
 					<slot />
