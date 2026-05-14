@@ -1,9 +1,9 @@
 ---
 title: "Web YUKO + Blog"
 subtitle: "Landing Page + Blog de contenido: Plataforma visual diseñada para potenciar la identidad de YUKO AUDIOVISUAL y exhibir proyectos audiovisuales con una arquitectura moderna y escalable."
-date: 2026-05-12
+date: 2026-05-14
 tipo: "Propuesta Técnica y Económica"
-precio: "$300.000"
+precio: "$150.000"
 incluye: "Desarrollo integral · Dominio (1 año)\nHosting inicial · Configuración de seguridad\nIntegración Cloudflare R2 para video online"
 formaPago: "50% al inicio del proyecto\n50% contra entrega y despliegue final"
 ---
@@ -12,7 +12,7 @@ formaPago: "50% al inicio del proyecto\n50% contra entrega y despliegue final"
 
 | Característica | Descripción |
 |---|---|
-| Diseño Personalizado | Interfaz 100% personalizada con estética cinematográfica y foco en identidad visual. |
+| Diseño Personalizado | Interfaz 100% personalizada con foco en identidad visual. |
 | Frontend Moderno | Programación con Astro, Tailwind CSS y TypeScript. Arquitectura SSG para máxima velocidad y rendimiento. |
 | Hero Principal | Sección de impacto visual con video destacado. |
 | Portfolio Audiovisual | Exhibición de trabajos destacados, proyectos y piezas audiovisuales. |
